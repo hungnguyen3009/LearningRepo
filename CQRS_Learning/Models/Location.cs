@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CQRS_Learning.Models
 {
-    public class Location : DomainEventManager, IAggregateRoot
+    public class Location : Entity, IAggregateRoot
     {
         public int LocationId { get; private set; }
         public string StreetAddress { get; private set; }
@@ -20,12 +20,14 @@ namespace CQRS_Learning.Models
         private Location() { }
 
         public Location(
+            Guid aggregateId,
             int locationId,
             string streetAddress,
             string city,
             string state,
             string postalCode)
         {
+            Id = aggregateId;
             LocationId = locationId;
             StreetAddress = streetAddress;
             City = city;
@@ -38,12 +40,16 @@ namespace CQRS_Learning.Models
 
         public void AddEmployee(int employeeId)
         {
+            Employees.Add(employeeId);
 
+            // Event applied here
         }
 
         public void RemoveEmployee(int employeeId)
         {
+            Employees.Remove(employeeId);
 
+            // Event applied here
         }
     }
 }

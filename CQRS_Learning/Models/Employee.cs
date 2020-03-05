@@ -10,7 +10,7 @@ using CQRS_Learning.Events.EmployeeCreated;
 
 namespace CQRS_Learning.Models
 {
-    public class Employee : DomainEventManager, IAggregateRoot
+    public class Employee : Core.Implementations.Entity, IAggregateRoot
     {
         public int EmployeeId { get; private set; }
         public string FirstName { get; private set; }
@@ -21,12 +21,14 @@ namespace CQRS_Learning.Models
         private Employee() { }
 
         public Employee(
+            Guid aggregateId,
             int employeeId,
             string firstName,
             string lastName,
             DateTime dateOfBirth,
             string jobTitle)
         {
+            Id = aggregateId;
             EmployeeId = employeeId;
             FirstName = firstName;
             LastName = lastName;

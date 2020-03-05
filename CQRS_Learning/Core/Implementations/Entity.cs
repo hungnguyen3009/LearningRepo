@@ -6,7 +6,7 @@ using MediatR;
 
 namespace CQRS_Learning.Core.Implementations
 {
-    public abstract class DomainEventManager : IDomainEventManager
+    public abstract class Entity : IDomainEventManager
     {
         /// <summary>
         /// The Id of the entity
